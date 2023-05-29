@@ -8,3 +8,4 @@ Jinja2>=3.0
 nomic
 openai
 langchain
+tiktoken
