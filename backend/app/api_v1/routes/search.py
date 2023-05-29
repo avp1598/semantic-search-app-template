@@ -61,4 +61,4 @@ async def semantic_search(query: str, num_results: int = 10):
 
     answer = chain({"question": query}, return_only_outputs=True)
     print(answer)
-    return SemanticSearchResponse(result=answer)
+    return SemanticSearchResponse(result=answer["answer"])
