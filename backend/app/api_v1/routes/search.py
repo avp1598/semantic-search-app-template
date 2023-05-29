@@ -53,10 +53,11 @@ async def semantic_search(query: str, num_results: int = 10):
     # return SemanticSearchResponse(results=results)
     vectorstore = AtlasDB(settings.atlas_project_name, openai, settings.nomic_api_key)
     chain = RetrievalQAWithSourcesChain.from_chain_type(
-        ChatOpenAI(model_name="gpt-3.5-turbo"),
+        ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=settings.openai_api_key),
         chain_type="map_reduce",
         retriever=vectorstore.as_retriever(),
     )
+    print(query)
 
     answer = chain({"question": query}, return_only_outputs=True)
     print(answer)
